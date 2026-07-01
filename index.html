@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f5fba" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Bulk Sack" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Bulk Sack Calculator</title>
+</head>
+<body>
+  <main class="app-shell">
+    <h1>Bulk Sack Calculator</h1>
+
+    <section class="card input-card">
+      <div class="row">
+        <label for="tankCapacity">Bulk Tank</label>
+        <div class="input-unit">
+          <input id="tankCapacity" type="number" inputmode="decimal" min="0" step="any" placeholder="2330" />
+          <span>ft³</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <label for="safeFill">Safe Fill Level</label>
+        <div class="input-unit">
+          <input id="safeFill" type="number" inputmode="decimal" min="0" max="100" step="any" placeholder="85" />
+          <span>%</span>
+        </div>
+      </div>
+
+      <button id="lockButton" class="lock-button unlocked" type="button">Inputs Unlocked</button>
+    </section>
+
+    <section class="card product-card">
+      <label for="productSelect" class="section-label">Product</label>
+      <select id="productSelect"></select>
+      <div id="selectedFactor" class="factor-line">Select a product</div>
+    </section>
+
+    <section class="result-panel" aria-live="polite">
+      <div class="result-label">Sacks That Will Fit</div>
+      <div id="sackResult" class="result-value">—</div>
+      <div id="calculationLine" class="calc-line">Lock inputs and select a product.</div>
+    </section>
+
+    <section class="summary-grid">
+      <div class="summary-box">
+        <span>Reserve Capacity</span>
+        <strong id="reserveCapacity">—</strong>
+      </div>
+      <div class="summary-box">
+        <span>Usable Capacity</span>
+        <strong id="usableCapacity">—</strong>
+      </div>
+    </section>
+
+    <section class="product-output">
+      <span>The calculation was for</span>
+      <strong id="productNameOutput">—</strong>
+    </section>
+
+    <footer>
+      <span>Harley C.</span>
+      <span>v1.0</span>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
