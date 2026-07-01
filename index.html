@@ -1,66 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#0f5fba" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="Bulk Sack" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#061f5c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Bulk Sack">
   <title>Bulk Sack Calculator</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main class="app-shell">
-    <h1>Bulk Sack Calculator</h1>
+    <header>
+      <h1>Bulk Sack Calculator</h1>
+    </header>
 
     <section class="card input-card">
-      <div class="row">
-        <label for="tankCapacity">Bulk Tank</label>
-        <div class="input-unit">
-          <input id="tankCapacity" type="number" inputmode="decimal" min="0" step="any" placeholder="2330" />
-          <span>ft³</span>
-        </div>
+      <div class="grid-row">
+        <label for="tankCapacity">Bulk Tank<br>Capacity</label>
+        <input id="tankCapacity" class="numeric" inputmode="decimal" type="text" autocomplete="off" placeholder="0">
+        <span class="unit">ft³</span>
+        <button id="lockButton" class="lock-button unlocked" type="button">INPUTS<br>UNLOCKED</button>
       </div>
 
-      <div class="row">
-        <label for="safeFill">Safe Fill Level</label>
-        <div class="input-unit">
-          <input id="safeFill" type="number" inputmode="decimal" min="0" max="100" step="any" placeholder="85" />
-          <span>%</span>
-        </div>
+      <div class="grid-row safe-row">
+        <label for="safeFill">Safe Fill<br>Level</label>
+        <input id="safeFill" class="numeric" inputmode="decimal" type="text" autocomplete="off" placeholder="85">
+        <span class="unit">%</span>
       </div>
-
-      <button id="lockButton" class="lock-button unlocked" type="button">Inputs Unlocked</button>
     </section>
 
     <section class="card product-card">
-      <label for="productSelect" class="section-label">Product</label>
-      <select id="productSelect"></select>
-      <div id="selectedFactor" class="factor-line">Select a product</div>
+      <label class="select-label" for="productSelect">Select Cement / Product Type</label>
+      <select id="productSelect" aria-label="Select Cement or Product Type"></select>
+      <div id="factorDisplay" class="factor-display">— ft³ per sack</div>
     </section>
 
-    <section class="result-panel" aria-live="polite">
-      <div class="result-label">Sacks That Will Fit</div>
-      <div id="sackResult" class="result-value">—</div>
-      <div id="calculationLine" class="calc-line">Lock inputs and select a product.</div>
+    <section class="result-panel">
+      <div class="result-title">Sacks That Will Fit</div>
+      <div id="sacksResult" class="sacks-result">—</div>
+      <div class="result-unit">Sacks</div>
     </section>
 
-    <section class="summary-grid">
-      <div class="summary-box">
-        <span>Reserve Capacity</span>
-        <strong id="reserveCapacity">—</strong>
+    <section class="card calc-card">
+      <div class="calc-for">Calculation was for:</div>
+      <div id="calcProduct" class="calc-product">Select a product</div>
+      <div id="calcFactor" class="calc-factor">— ft³ per sack</div>
+
+      <div class="divider"></div>
+
+      <div class="line-item">
+        <span>Bulk Tank Capacity</span>
+        <strong id="tankSummary">— ft³</strong>
       </div>
-      <div class="summary-box">
-        <span>Usable Capacity</span>
-        <strong id="usableCapacity">—</strong>
+      <div class="line-item">
+        <span>Safe Fill Level</span>
+        <strong id="safeSummary">— %</strong>
       </div>
-    </section>
-
-    <section class="product-output">
-      <span>The calculation was for</span>
-      <strong id="productNameOutput">—</strong>
+      <div class="line-item reserve">
+        <span id="reserveLabel">Reserve Capacity</span>
+        <strong id="reserveSummary">— ft³</strong>
+      </div>
+      <div class="line-item usable">
+        <span id="usableLabel">Usable Capacity</span>
+        <strong id="usableSummary">— ft³</strong>
+      </div>
     </section>
 
     <footer>
